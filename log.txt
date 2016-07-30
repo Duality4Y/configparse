@@ -1,0 +1,75 @@
+scons: Reading SConscript files ...
+cpppath: ['include/']
+scons: done reading SConscript files.
+scons: Building targets ...
+g++ -o build/src/main.o -c -Werror -ggdb3 -O0 -ansi -pedantic-errors -Wextra -Wall --std=c++11 -Iinclude src/main.cpp
+src/main.cpp:35:12: error: 'Token_t' was not declared in this scope
+     vector<Token_t> lex();
+            ^~~~~~~
+src/main.cpp:35:19: error: template argument 1 is invalid
+     vector<Token_t> lex();
+                   ^
+src/main.cpp:35:19: error: template argument 2 is invalid
+src/main.cpp:36:5: error: 'Token_t' does not name a type
+     Token_t get_token();
+     ^~~~~~~
+src/main.cpp:42:9: error: 'TOKEN' does not name a type
+         TOKEN token;
+         ^~~~~
+src/main.cpp: In constructor 'Lexer::Lexer(std::ifstream)':
+src/main.cpp:51:42: error: use of deleted function 'std::basic_ifstream<_CharT, _Traits>::basic_ifstream(const std::basic_ifstream<_CharT, _Traits>&) [with _CharT = char; _Traits = std::char_traits<char>]'
+     this->infile = std::ifstream(instream);
+                                          ^
+In file included from src/main.cpp:2:0:
+/usr/include/c++/6.1.1/fstream:519:7: note: declared here
+       basic_ifstream(const basic_ifstream&) = delete;
+       ^~~~~~~~~~~~~~
+src/main.cpp: At global scope:
+src/main.cpp:54:8: error: invalid use of 'this' at top level
+ vector<this->Token_t> Lexer::lex()
+        ^~~~
+src/main.cpp:54:21: error: template argument 1 is invalid
+ vector<this->Token_t> Lexer::lex()
+                     ^
+src/main.cpp:54:21: error: template argument 2 is invalid
+src/main.cpp: In member function 'int Lexer::lex()':
+src/main.cpp:57:1: error: no return statement in function returning non-void [-Werror=return-type]
+ }
+ ^
+src/main.cpp: In function 'int main(int, char**)':
+src/main.cpp:71:35: error: no matching function for call to 'Lexer::Lexer(std::__cxx11::string&)'
+     Lexer lexer = Lexer(configfile);
+                                   ^
+src/main.cpp:49:1: note: candidate: Lexer::Lexer(std::ifstream)
+ Lexer::Lexer(std::ifstream instream)
+ ^~~~~
+src/main.cpp:49:1: note:   no known conversion for argument 1 from 'std::__cxx11::string {aka std::__cxx11::basic_string<char>}' to 'std::ifstream {aka std::basic_ifstream<char>}'
+src/main.cpp:29:7: note: candidate: Lexer::Lexer(Lexer&&)
+ class Lexer
+       ^~~~~
+src/main.cpp:29:7: note:   no known conversion for argument 1 from 'std::__cxx11::string {aka std::__cxx11::basic_string<char>}' to 'Lexer&&'
+src/main.cpp:72:18: error: invalid use of 'Lexer::Token_t'
+     vector<lexer.Token_t> tokens = lexer.lex();
+                  ^~~~~~~
+src/main.cpp:72:25: error: template argument 1 is invalid
+     vector<lexer.Token_t> tokens = lexer.lex();
+                         ^
+src/main.cpp:72:25: error: template argument 2 is invalid
+src/main.cpp:72:5: error: 'typedef struct Lexer::Token_t Lexer::Token_t' is private within this context
+     vector<lexer.Token_t> tokens = lexer.lex();
+     ^~~~~~~~~~~~~~~~~~~~~
+src/main.cpp:43:7: note: declared private here
+     } Token_t;
+       ^~~~~~~
+src/main.cpp:72:27: warning: unused variable 'tokens' [-Wunused-variable]
+     vector<lexer.Token_t> tokens = lexer.lex();
+                           ^~~~~~
+src/main.cpp:69:14: warning: unused parameter 'argc' [-Wunused-parameter]
+ int main(int argc, char **argv)
+              ^~~~
+src/main.cpp:69:27: warning: unused parameter 'argv' [-Wunused-parameter]
+ int main(int argc, char **argv)
+                           ^~~~
+cc1plus: all warnings being treated as errors
+scons: *** [build/src/main.o] Error 1
+scons: building terminated because of errors.
