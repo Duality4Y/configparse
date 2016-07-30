@@ -84,7 +84,17 @@ vector<token_t> Lexer::lex()
                 this->get();
             }
         }
-        else if(std::isalpha(this->peek()) && !std::isspace(this->peek()))
+
+        if(this->peek() == '{')
+        {
+            std::cout << "WEL ARGUMENTS\n";
+            while(this->peek() != '}')
+            {
+                this->get();
+            }
+        }
+
+        if(std::isalpha(this->peek()) && !std::isspace(this->peek()))
         {
             current_token.value = "";
             while(this->peek() != ':')
